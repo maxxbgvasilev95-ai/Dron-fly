@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вашият Продукт | Бърза Поръчка</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #F5F5F7;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #E8E8EA;
+            --text-primary: #1D1D1F;
+            --text-secondary: #6E6E73;
+            --accent: #5E5E62;
+            --accent-hover: #3D3D40;
+            --border: #D2D2D7;
+            --error: #FF3B30;
+            --success: #34C759;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+            position: relative;
+            background:
+                linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%),
+                radial-gradient(circle at 20% 50%, rgba(94, 94, 98, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(94, 94, 98, 0.02) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            animation: fadeInRight 1s ease;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(48px, 8vw, 84px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #1D1D1F 0%, #5E5E62 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-weight: 300;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 80px 24px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #FAFAFA 0%, #E8E8EA 100%);
+            border-radius: 24px;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 16px;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .product-image:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: #FFB800;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-info h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .product-features li {
+            padding: 16px 0;
+            padding-left: 32px;
+            position: relative;
+            font-size: 18px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-features li:last-child {
+            border-bottom: none;
+        }
+
+        .product-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Pricing Calculator */
+        .pricing-section {
+            padding: 80px 24px;
+            background: var(--bg-primary);
+        }
+
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .pricing-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #5E5E62 0%, #3D3D40 100%);
+        }
+
+        .pricing-card h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .pricing-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-size: 16px;
+        }
+
+        .quantity-selector {
+            margin-bottom: 40px;
+        }
+
+        .quantity-label {
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .quantity-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .quantity-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .quantity-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .quantity-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quantity-option input:checked+label {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(94, 94, 98, 0.15);
+        }
+
+        .quantity-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .quantity-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--bg-secondary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFB800;
+            /* Changed from var(--success) */
+            color: #000000;
+            /* Changed from white */
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 2px 12px rgba(255, 184, 0, 0.3);
+            /* Adjusted shadow color */
+            white-space: nowrap;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        .price-display {
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 2px solid var(--border);
+        }
+
+        .price-breakdown {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .total-price {
+            font-family: 'Syne', sans-serif;
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .savings {
+            color: var(--success);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Order Form */
+        .order-form {
+            margin-top: 48px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-label .required {
+            color: var(--accent);
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(94, 94, 98, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .courier-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .courier-option {
+            position: relative;
+        }
+
+        .courier-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .courier-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .courier-option input:checked+label {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: #FFB800;
+            /* Changed from var(--accent) */
+            color: #000000;
+            /* Changed from var(--bg-secondary) */
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 32px;
+            box-shadow: 0 4px 16px rgba(94, 94, 98, 0.2);
+        }
+
+        .submit-btn:hover {
+            background: #FFC933;
+            /* Adjusted hover color for yellow */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 184, 0, 0.3);
+            /* Adjusted shadow color */
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 48px;
+            background: #F0FDF4;
+            border: 2px solid var(--success);
+            border-radius: 24px;
+            margin-top: 32px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .success-message h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--success);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 24px;
+            background: var(--bg-tertiary);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px;
+        }
+
+        .section-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .gallery-item {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 20px var(--shadow);
+            aspect-ratio: 4/3;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #f5f5f7;
+            transition: transform 0.5s ease;
+        }
+
+        .quick-order-card {
+            background-color: #FFB800;
+            /* Changed from linear-gradient */
+            border: none;
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            color: #000000;
+            margin-bottom: 48px;
+            box-shadow: 0 8px 32px rgba(255, 184, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-order-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+        }
+
+        .quick-order-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .quick-order-phone {
+            font-family: 'Syne', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            margin: 16px 0;
+            display: block;
+            text-decoration: none;
+            color: #000000;
+            /* Changed from white */
+            text-shadow: none;
+            /* Removed text-shadow */
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .quick-order-phone:hover {
+            transform: scale(1.05);
+        }
+
+        .quick-order-text {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .pricing-card {
+                padding: 32px 24px;
+            }
+
+            .form-row,
+            .courier-options {
+                grid-template-columns: 1fr;
+            }
+
+            .quantity-options {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .total-price {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="product-badge">Налично сега</div>
+                <h1>E99PRO FLY</h1>
+                <p class="hero-subtitle">
+                    E99PRO FLY е задължителна покупка заради своята двойна 4K камера и мощни безчеткови мотори, които
+                    гарантират кристални кадри и стабилност дори при вятър. Той е изключително лесен за управление от
+                    начинаещи благодарение на функцията за автоматично задържане на височината, а голямата 1800mAh
+                    батерия ви осигурява по-дълго време за полети и забавление.
+                </p>
+                <a href="#orderForm" class="submit-btn"
+                    style="text-decoration:none; display:inline-block; width:auto; margin-top:0;">Купи Сега</a>
+            </div>
+            <div class="hero-image">
+                <img src="drone 4k /1.png" alt="Drone 4K Hero">
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <section class="product-section">
+        <div class="container">
+            <div class="product-grid">
+                <div class="product-image">
+                    <img src="drone 4k /2.png" alt="Drone 4K Feature">
+                </div>
+                <div class="product-info">
+                    <h2>Характеристики</h2>
+                    <ul class="product-features">
+                        <li>Първа характеристика на продукта</li>
+                        <li>Втора характеристика на продукта</li>
+                        <li>Трета характеристика на продукта</li>
+                        <li>Четвърта характеристика на продукта</li>
+                        <li>Пета характеристика на продукта</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>В Действие</h2>
+                <p class="hero-subtitle" style="margin-bottom:0; font-size:18px;">Вижте дронът в реална среда</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="drone 4k /3.jpg" alt="Drone Action 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="drone 4k /4.jpg" alt="Drone Action 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Order -->
+    <section class="pricing-section">
+        <div class="container">
+            <!-- Quick Order Banner -->
+            <div class="quick-order-card">
+                <div class="quick-order-title">Бърза Поръчка по Телефона</div>
+                <a href="tel:0899822769" class="quick-order-phone">0899 822 769</a>
+                <div class="quick-order-text">Поръчайте директно без да попълвате форми</div>
+            </div>
+
+            <div class="pricing-card">
+                <h2>Поръчай Сега</h2>
+                <p class="pricing-subtitle">Изберете количество и спестете повече</p>
+
+                <!-- Quantity Selector -->
+                <div class="quantity-selector">
+                    <div class="quantity-label">Изберете количество</div>
+                    <div class="quantity-options">
+                        <div class="quantity-option">
+                            <input type="radio" name="quantity" id="qty1" value="1" data-price="10" checked>
+                            <label for="qty1">
+                                <span class="quantity-number">1</span>
+                                <span class="quantity-text">брой</span>
+                            </label>
+                        </div>
+                        <div class="quantity-option">
+                            <input type="radio" name="quantity" id="qty2" value="2" data-price="18">
+                            <label for="qty2">
+                                <span class="quantity-number">2</span>
+                                <span class="quantity-text">броя</span>
+                                <span class="popular-badge">Най-предпочитано</span>
+                                <span class="discount-badge">-10%</span>
+                            </label>
+                        </div>
+                        <div class="quantity-option">
+                            <input type="radio" name="quantity" id="qty3" value="3" data-price="22">
+                            <label for="qty3">
+                                <span class="quantity-number">3</span>
+                                <span class="quantity-text">броя</span>
+                                <span class="discount-badge">-27%</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Display -->
+                <div class="price-display">
+                    <div class="price-breakdown">
+                        <span>Количество:</span>
+                        <span id="selected-quantity">1 брой</span>
+                    </div>
+                    <div class="price-breakdown">
+                        <span>Цена на брой:</span>
+                        <span id="unit-price">10.00€</span>
+                    </div>
+                    <div class="total-price" id="total-price">10€</div>
+                    <div class="savings" id="savings-text" style="opacity: 0;">Спестявате 2€</div>
+                </div>
+
+                <!-- Order Form -->
+                <form class="order-form" id="orderForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Име <span class="required">*</span></label>
+                            <input type="text" class="form-input" name="firstName" placeholder="Иван" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Фамилия <span class="required">*</span></label>
+                            <input type="text" class="form-input" name="lastName" placeholder="Иванов" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label class="form-label">Телефон <span class="required">*</span></label>
+                            <input type="tel" class="form-input" name="phone" placeholder="+359 888 123 456" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Град <span class="required">*</span></label>
+                        <input type="text" class="form-input" name="city" placeholder="София" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Куриер <span class="required">*</span></label>
+                        <div class="courier-options">
+                            <div class="courier-option">
+                                <input type="radio" name="courier" id="econt" value="econt" required checked>
+                                <label for="econt">Еконт</label>
+                            </div>
+                            <div class="courier-option">
+                                <input type="radio" name="courier" id="speedy" value="speedy" required>
+                                <label for="speedy">Спиди</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Офис на куриер <span class="required">*</span></label>
+                        <input type="text" class="form-input" name="office" placeholder="Офис София - Централна гара"
+                            required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Поръчай за <span id="btn-price">10€</span>
+                    </button>
+
+                    <p class="form-note">Плащане на куриера при получаване</p>
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">✓</div>
+                    <h3>Поръчката е изпратена!</h3>
+                    <p>Благодарим ви! Ще се свържем с вас скоро за потвърждение.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Price calculation
+        const quantityInputs = document.querySelectorAll('input[name="quantity"]');
+        const totalPriceEl = document.getElementById('total-price');
+        const unitPriceEl = document.getElementById('unit-price');
+        const selectedQuantityEl = document.getElementById('selected-quantity');
+        const savingsEl = document.getElementById('savings-text');
+        const btnPriceEl = document.getElementById('btn-price');
+
+        const prices = {
+            1: 10,
+            2: 18,
+            3: 22
+        };
+
+        const unitPrices = {
+            1: 10,
+            2: 9,
+            3: 7.33
+        };
+
+        function updatePrice() {
+            const selected = document.querySelector('input[name="quantity"]:checked');
+            const qty = parseInt(selected.value);
+            const price = prices[qty];
+            const regularPrice = qty * 10;
+            const savings = regularPrice - price;
+
+            totalPriceEl.textContent = `${price}€`;
+            btnPriceEl.textContent = `${price}€`;
+            unitPriceEl.textContent = `${unitPrices[qty].toFixed(2)}€`;
+
+            if (qty === 1) {
+                selectedQuantityEl.textContent = `${qty} брой`;
+            } else {
+                selectedQuantityEl.textContent = `${qty} броя`;
+            }
+
+            if (savings > 0) {
+                savingsEl.textContent = `Спестявате ${savings}€`;
+                savingsEl.style.opacity = '1';
+            } else {
+                savingsEl.style.opacity = '0';
+            }
+        }
+
+        quantityInputs.forEach(input => {
+            input.addEventListener('change', updatePrice);
+        });
+
+        // Form submission
+        const orderForm = document.getElementById('orderForm');
+        const successMessage = document.getElementById('successMessage');
+
+        orderForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(orderForm);
+            const data = Object.fromEntries(formData);
+            const selected = document.querySelector('input[name="quantity"]:checked');
+            data.quantity = selected.value;
+            data.totalPrice = prices[parseInt(selected.value)];
+
+            // Log order data (в реален случай това ще отиде към сървър/API)
+            console.log('Нова поръчка:', data);
+
+            // Show success message
+            orderForm.style.display = 'none';
+            successMessage.classList.add('show');
+
+            // Optional: Reset form after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+                orderForm.style.display = 'block';
+                orderForm.reset();
+                updatePrice();
+            }, 5000);
+        });
+
+        // Initialize
+        updatePrice();
+    </script>
+</body>
+
+</html>
